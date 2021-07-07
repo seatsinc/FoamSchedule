@@ -16,6 +16,7 @@ namespace FoamSchedule
     {
         private List<Shift> shifts = new List<Shift>();
         private List<Part> parts = new List<Part>();
+        private List<Order> orders = new List<Order>();
 
         public Form1()
         {
@@ -27,6 +28,7 @@ namespace FoamSchedule
             this.refreshConstants();
             this.refreshShifts();
             this.refreshParts();
+            this.refreshOrders();
             this.initWeekdays();
             
         }
@@ -178,10 +180,13 @@ namespace FoamSchedule
 
             foreach (DataRow dr in dt.Rows)
             {
-                this.cbPartNum.Items.Add(dr["PART_NUM"].ToString());
+                string partNum = dr["PART_NUM"].ToString();
+
+                this.cbPartNum.Items.Add(partNum);
+                this.cbPartN.Items.Add(partNum);
 
                 this.parts.Add(new Part(
-                    dr["PART_NUM"].ToString(),
+                    partNum,
                     Convert.ToInt32(dr["NUM_TOOLS"].ToString())
                     ));
             }
@@ -190,6 +195,9 @@ namespace FoamSchedule
 
             if (this.cbPartNum.Items.Count > 0)
                 this.cbPartNum.SelectedIndex = 0;
+
+            if (this.cbPartN.Items.Count > 0)
+                this.cbPartN.SelectedIndex = 0;
 
         }
 
@@ -219,6 +227,72 @@ namespace FoamSchedule
             dh.executeNonQuery($"delete from PARTS where PART_NUM={this.cbPartNum.SelectedItem}");
 
             this.refreshParts();
+        }
+
+        private void btnAddOrder_Click(object sender, EventArgs e)
+        {
+            DatabaseHandler dh = new DatabaseHandler("database.db");
+
+            dh.executeNonQuery($"insert into ORDERS (ORDER_NUM, PART_NUM, QUANTITY, DATE) VALUES (\"{this.tbOrderNum.Text}\", \"{this.cbPartN.SelectedItem}\", {this.nQuantity.Value}, \"{this.dtpDueDate.Value.ToShortDateString()}\")");
+
+            this.refreshOrders();
+        }
+
+        private void populateOrders()
+        {
+            this.dgvOrders.Rows.Clear();
+
+            for (int i = 0; i < this.orders.Count; ++i)
+            {
+                Order o = this.orders[i];
+
+                this.dgvOrders.Rows.Add();
+
+                this.dgvOrders["orderNum", i].Value = o.getOrderNum();
+                this.dgvOrders["partNumOrder", i].Value = o.getPartNum();
+                this.dgvOrders["quantity", i].Value = o.getQuantity();
+                this.dgvOrders["dueDate", i].Value = o.getDueDate().ToShortDateString();
+
+            }
+        }
+
+        private void refreshOrders()
+        {
+            this.cbOrderNum.Items.Clear();
+            this.orders.Clear();
+
+            DatabaseHandler dh = new DatabaseHandler("database.db");
+
+            DataTable dt = dh.executeQuery("select * from ORDERS");
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                this.cbOrderNum.Items.Add(dr["ORDER_NUM"].ToString());
+
+                this.orders.Add(new Order(
+                    dr["ORDER_NUM"].ToString(),
+                    dr["PART_NUM"].ToString(),
+                    Convert.ToInt32(dr["QUANTITY"].ToString()),
+                    DateTime.Parse(dr["DATE"].ToString())
+                    ));
+            }
+
+            this.populateOrders();
+
+            if (this.cbOrderNum.Items.Count > 0)
+                this.cbOrderNum.SelectedIndex = 0;
+        }
+
+        private void btnDeleteOrder_Click(object sender, EventArgs e)
+        {
+            if (this.orders.Count == 0)
+                return;
+
+            DatabaseHandler dh = new DatabaseHandler("database.db");
+
+            dh.executeNonQuery($"delete from ORDERS where ORDER_NUM=\"{this.cbOrderNum.SelectedItem}\"");
+
+            this.refreshOrders();
         }
     }
 }

@@ -72,7 +72,27 @@ namespace FoamSchedule
             this.nMaxTools = new System.Windows.Forms.NumericUpDown();
             this.partNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numTools = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvOrders = new System.Windows.Forms.DataGridView();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.tbOrderNum = new System.Windows.Forms.TextBox();
+            this.cbPartN = new System.Windows.Forms.ComboBox();
+            this.nQuantity = new System.Windows.Forms.NumericUpDown();
+            this.dtpDueDate = new System.Windows.Forms.DateTimePicker();
+            this.btnAddOrder = new System.Windows.Forms.Button();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.cbOrderNum = new System.Windows.Forms.ComboBox();
+            this.btnDeleteOrder = new System.Windows.Forms.Button();
+            this.orderNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.partNumOrder = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dueDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -87,6 +107,10 @@ namespace FoamSchedule
             ((System.ComponentModel.ISupportInitialize)(this.nOverallEfficiency)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nLineCycle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nMaxTools)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).BeginInit();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nQuantity)).BeginInit();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -114,6 +138,9 @@ namespace FoamSchedule
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.groupBox6);
+            this.tabPage2.Controls.Add(this.groupBox5);
+            this.tabPage2.Controls.Add(this.dgvOrders);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -552,6 +579,198 @@ namespace FoamSchedule
             this.numTools.Name = "numTools";
             this.numTools.ReadOnly = true;
             // 
+            // dgvOrders
+            // 
+            this.dgvOrders.AllowUserToAddRows = false;
+            this.dgvOrders.AllowUserToDeleteRows = false;
+            this.dgvOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvOrders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.orderNum,
+            this.partNumOrder,
+            this.quantity,
+            this.dueDate});
+            this.dgvOrders.Location = new System.Drawing.Point(6, 6);
+            this.dgvOrders.Name = "dgvOrders";
+            this.dgvOrders.ReadOnly = true;
+            this.dgvOrders.Size = new System.Drawing.Size(566, 388);
+            this.dgvOrders.TabIndex = 0;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.btnAddOrder);
+            this.groupBox5.Controls.Add(this.dtpDueDate);
+            this.groupBox5.Controls.Add(this.nQuantity);
+            this.groupBox5.Controls.Add(this.cbPartN);
+            this.groupBox5.Controls.Add(this.tbOrderNum);
+            this.groupBox5.Controls.Add(this.label13);
+            this.groupBox5.Controls.Add(this.label9);
+            this.groupBox5.Controls.Add(this.label8);
+            this.groupBox5.Controls.Add(this.label7);
+            this.groupBox5.Location = new System.Drawing.Point(578, 6);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(184, 160);
+            this.groupBox5.TabIndex = 1;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Add Order";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 22);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(43, 13);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Order #";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 48);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(36, 13);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "Part #";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 74);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(46, 13);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "Quantity";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 98);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(30, 13);
+            this.label13.TabIndex = 2;
+            this.label13.Text = "Date";
+            // 
+            // tbOrderNum
+            // 
+            this.tbOrderNum.Location = new System.Drawing.Point(55, 19);
+            this.tbOrderNum.Name = "tbOrderNum";
+            this.tbOrderNum.Size = new System.Drawing.Size(123, 20);
+            this.tbOrderNum.TabIndex = 3;
+            // 
+            // cbPartN
+            // 
+            this.cbPartN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPartN.FormattingEnabled = true;
+            this.cbPartN.Location = new System.Drawing.Point(55, 45);
+            this.cbPartN.Name = "cbPartN";
+            this.cbPartN.Size = new System.Drawing.Size(123, 21);
+            this.cbPartN.TabIndex = 2;
+            // 
+            // nQuantity
+            // 
+            this.nQuantity.Location = new System.Drawing.Point(55, 72);
+            this.nQuantity.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.nQuantity.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nQuantity.Name = "nQuantity";
+            this.nQuantity.Size = new System.Drawing.Size(123, 20);
+            this.nQuantity.TabIndex = 4;
+            this.nQuantity.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // dtpDueDate
+            // 
+            this.dtpDueDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDueDate.Location = new System.Drawing.Point(55, 98);
+            this.dtpDueDate.Name = "dtpDueDate";
+            this.dtpDueDate.Size = new System.Drawing.Size(123, 20);
+            this.dtpDueDate.TabIndex = 5;
+            // 
+            // btnAddOrder
+            // 
+            this.btnAddOrder.BackColor = System.Drawing.Color.PaleGreen;
+            this.btnAddOrder.Location = new System.Drawing.Point(6, 124);
+            this.btnAddOrder.Name = "btnAddOrder";
+            this.btnAddOrder.Size = new System.Drawing.Size(172, 23);
+            this.btnAddOrder.TabIndex = 6;
+            this.btnAddOrder.Text = "+";
+            this.btnAddOrder.UseVisualStyleBackColor = false;
+            this.btnAddOrder.Click += new System.EventHandler(this.btnAddOrder_Click);
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.btnDeleteOrder);
+            this.groupBox6.Controls.Add(this.cbOrderNum);
+            this.groupBox6.Controls.Add(this.label14);
+            this.groupBox6.Location = new System.Drawing.Point(578, 172);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(184, 81);
+            this.groupBox6.TabIndex = 2;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Delete Order";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 22);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(43, 13);
+            this.label14.TabIndex = 1;
+            this.label14.Text = "Order #";
+            // 
+            // cbOrderNum
+            // 
+            this.cbOrderNum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbOrderNum.FormattingEnabled = true;
+            this.cbOrderNum.Location = new System.Drawing.Point(55, 19);
+            this.cbOrderNum.Name = "cbOrderNum";
+            this.cbOrderNum.Size = new System.Drawing.Size(123, 21);
+            this.cbOrderNum.TabIndex = 3;
+            // 
+            // btnDeleteOrder
+            // 
+            this.btnDeleteOrder.BackColor = System.Drawing.Color.Crimson;
+            this.btnDeleteOrder.Location = new System.Drawing.Point(6, 46);
+            this.btnDeleteOrder.Name = "btnDeleteOrder";
+            this.btnDeleteOrder.Size = new System.Drawing.Size(172, 23);
+            this.btnDeleteOrder.TabIndex = 7;
+            this.btnDeleteOrder.Text = "x";
+            this.btnDeleteOrder.UseVisualStyleBackColor = false;
+            this.btnDeleteOrder.Click += new System.EventHandler(this.btnDeleteOrder_Click);
+            // 
+            // orderNum
+            // 
+            this.orderNum.HeaderText = "Order #";
+            this.orderNum.Name = "orderNum";
+            this.orderNum.ReadOnly = true;
+            // 
+            // partNumOrder
+            // 
+            this.partNumOrder.HeaderText = "Part #";
+            this.partNumOrder.Name = "partNumOrder";
+            this.partNumOrder.ReadOnly = true;
+            // 
+            // quantity
+            // 
+            this.quantity.HeaderText = "Quantity";
+            this.quantity.Name = "quantity";
+            this.quantity.ReadOnly = true;
+            // 
+            // dueDate
+            // 
+            this.dueDate.HeaderText = "Due Date";
+            this.dueDate.Name = "dueDate";
+            this.dueDate.ReadOnly = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -562,6 +781,7 @@ namespace FoamSchedule
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
@@ -580,6 +800,12 @@ namespace FoamSchedule
             ((System.ComponentModel.ISupportInitialize)(this.nOverallEfficiency)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nLineCycle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nMaxTools)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).EndInit();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nQuantity)).EndInit();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -629,6 +855,25 @@ namespace FoamSchedule
         private System.Windows.Forms.ComboBox cbPartNum;
         private System.Windows.Forms.DataGridViewTextBoxColumn partNum;
         private System.Windows.Forms.DataGridViewTextBoxColumn numTools;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Button btnDeleteOrder;
+        private System.Windows.Forms.ComboBox cbOrderNum;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Button btnAddOrder;
+        private System.Windows.Forms.DateTimePicker dtpDueDate;
+        private System.Windows.Forms.NumericUpDown nQuantity;
+        private System.Windows.Forms.ComboBox cbPartN;
+        private System.Windows.Forms.TextBox tbOrderNum;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DataGridView dgvOrders;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn partNumOrder;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dueDate;
     }
 }
 
