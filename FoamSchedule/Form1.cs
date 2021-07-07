@@ -224,9 +224,12 @@ namespace FoamSchedule
 
             DatabaseHandler dh = new DatabaseHandler("database.db");
 
-            dh.executeNonQuery($"delete from PARTS where PART_NUM={this.cbPartNum.SelectedItem}");
+            dh.executeNonQuery($"delete from ORDERS where PART_NUM=\"{this.cbPartNum.SelectedItem}\"");
+            
+            dh.executeNonQuery($"delete from PARTS where PART_NUM=\"{this.cbPartNum.SelectedItem}\"");
 
             this.refreshParts();
+            this.refreshOrders();
         }
 
         private void btnAddOrder_Click(object sender, EventArgs e)
