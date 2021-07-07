@@ -15,6 +15,7 @@ namespace FoamSchedule
     public partial class Form1 : Form
     {
         private List<Shift> shifts = new List<Shift>();
+        private List<Part> parts = new List<Part>();
 
         public Form1()
         {
@@ -25,6 +26,7 @@ namespace FoamSchedule
         {
             this.refreshConstants();
             this.refreshShifts();
+            this.refreshParts();
             this.initWeekdays();
             
         }
@@ -162,7 +164,61 @@ namespace FoamSchedule
                 MessageBox.Show("Part already exists!");
             }
 
-            this.refreshShifts();
+            this.refreshParts();
+        }
+
+        private void refreshParts()
+        {
+            this.cbPartNum.Items.Clear();
+            this.parts.Clear();
+
+            DatabaseHandler dh = new DatabaseHandler("database.db");
+
+            DataTable dt = dh.executeQuery("select * from PARTS");
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                this.cbPartNum.Items.Add(dr["PART_NUM"].ToString());
+
+                this.parts.Add(new Part(
+                    dr["PART_NUM"].ToString(),
+                    Convert.ToInt32(dr["NUM_TOOLS"].ToString())
+                    ));
+            }
+
+            this.populateParts();
+
+            if (this.cbPartNum.Items.Count > 0)
+                this.cbPartNum.SelectedIndex = 0;
+
+        }
+
+        private void populateParts()
+        {
+            this.dgvParts.Rows.Clear();
+
+            for (int i = 0; i < this.parts.Count; ++i)
+            {
+                Part p = this.parts[i];
+
+                this.dgvParts.Rows.Add();
+
+                this.dgvParts["partNum", i].Value = p.getPartNum();
+                this.dgvParts["numTools", i].Value = p.getNumTools();
+
+            }
+        }
+
+        private void btnDeletePart_Click(object sender, EventArgs e)
+        {
+            if (this.parts.Count == 0)
+                return;
+
+            DatabaseHandler dh = new DatabaseHandler("database.db");
+
+            dh.executeNonQuery($"delete from PARTS where PART_NUM={this.cbPartNum.SelectedItem}");
+
+            this.refreshParts();
         }
     }
 }
