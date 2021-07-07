@@ -249,7 +249,7 @@ namespace FoamSchedule
                 this.dgvOrders.Rows.Add();
 
                 this.dgvOrders["orderNum", i].Value = o.getOrderNum();
-                this.dgvOrders["partNumOrder", i].Value = o.getPartNum();
+                this.dgvOrders["partNumOrder", i].Value = o.getPart().getPartNum();
                 this.dgvOrders["quantity", i].Value = o.getQuantity();
                 this.dgvOrders["dueDate", i].Value = o.getDueDate().ToShortDateString();
 
@@ -269,9 +269,16 @@ namespace FoamSchedule
             {
                 this.cbOrderNum.Items.Add(dr["ORDER_NUM"].ToString());
 
+
+                DatabaseHandler dh2 = new DatabaseHandler("database.db");
+                DataTable dt2 = dh2.executeQuery($"select * from PARTS where PART_NUM=\"{dr["PART_NUM"]}\"");
+
+                DataRow dr2 = dt2.Rows[0];
+                
+
                 this.orders.Add(new Order(
                     dr["ORDER_NUM"].ToString(),
-                    dr["PART_NUM"].ToString(),
+                    new Part(dr2["PART_NUM"].ToString(), Convert.ToInt32(dr2["NUM_TOOLS"].ToString())),
                     Convert.ToInt32(dr["QUANTITY"].ToString()),
                     DateTime.Parse(dr["DATE"].ToString())
                     ));
