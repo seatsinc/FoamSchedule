@@ -32,6 +32,24 @@ namespace FoamSchedule
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.btnDeleteOrder = new System.Windows.Forms.Button();
+            this.cbOrderNum = new System.Windows.Forms.ComboBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnAddOrder = new System.Windows.Forms.Button();
+            this.dtpDueDate = new System.Windows.Forms.DateTimePicker();
+            this.nQuantity = new System.Windows.Forms.NumericUpDown();
+            this.cbPartN = new System.Windows.Forms.ComboBox();
+            this.tbOrderNum = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.dgvOrders = new System.Windows.Forms.DataGridView();
+            this.orderNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.partNumOrder = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dueDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnDeletePart = new System.Windows.Forms.Button();
@@ -43,10 +61,11 @@ namespace FoamSchedule
             this.tbPartNum = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dgvParts = new System.Windows.Forms.DataGridView();
+            this.partNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numTools = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnDelShift = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.cbShiftId = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -70,29 +89,12 @@ namespace FoamSchedule
             this.nLineCycle = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
             this.nMaxTools = new System.Windows.Forms.NumericUpDown();
-            this.partNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numTools = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvOrders = new System.Windows.Forms.DataGridView();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.tbOrderNum = new System.Windows.Forms.TextBox();
-            this.cbPartN = new System.Windows.Forms.ComboBox();
-            this.nQuantity = new System.Windows.Forms.NumericUpDown();
-            this.dtpDueDate = new System.Windows.Forms.DateTimePicker();
-            this.btnAddOrder = new System.Windows.Forms.Button();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.cbOrderNum = new System.Windows.Forms.ComboBox();
-            this.btnDeleteOrder = new System.Windows.Forms.Button();
-            this.orderNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.partNumOrder = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dueDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nQuantity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -107,10 +109,6 @@ namespace FoamSchedule
             ((System.ComponentModel.ISupportInitialize)(this.nOverallEfficiency)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nLineCycle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nMaxTools)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).BeginInit();
-            this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nQuantity)).BeginInit();
-            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -149,6 +147,187 @@ namespace FoamSchedule
             this.tabPage2.Text = "Orders";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.btnDeleteOrder);
+            this.groupBox6.Controls.Add(this.cbOrderNum);
+            this.groupBox6.Location = new System.Drawing.Point(578, 172);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(184, 81);
+            this.groupBox6.TabIndex = 2;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Delete Order";
+            // 
+            // btnDeleteOrder
+            // 
+            this.btnDeleteOrder.BackColor = System.Drawing.Color.LightCoral;
+            this.btnDeleteOrder.Location = new System.Drawing.Point(6, 46);
+            this.btnDeleteOrder.Name = "btnDeleteOrder";
+            this.btnDeleteOrder.Size = new System.Drawing.Size(172, 23);
+            this.btnDeleteOrder.TabIndex = 7;
+            this.btnDeleteOrder.Text = "Delete Order";
+            this.btnDeleteOrder.UseVisualStyleBackColor = false;
+            this.btnDeleteOrder.Click += new System.EventHandler(this.btnDeleteOrder_Click);
+            // 
+            // cbOrderNum
+            // 
+            this.cbOrderNum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbOrderNum.FormattingEnabled = true;
+            this.cbOrderNum.Location = new System.Drawing.Point(6, 19);
+            this.cbOrderNum.Name = "cbOrderNum";
+            this.cbOrderNum.Size = new System.Drawing.Size(172, 21);
+            this.cbOrderNum.TabIndex = 3;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.btnAddOrder);
+            this.groupBox5.Controls.Add(this.dtpDueDate);
+            this.groupBox5.Controls.Add(this.nQuantity);
+            this.groupBox5.Controls.Add(this.cbPartN);
+            this.groupBox5.Controls.Add(this.tbOrderNum);
+            this.groupBox5.Controls.Add(this.label13);
+            this.groupBox5.Controls.Add(this.label9);
+            this.groupBox5.Controls.Add(this.label8);
+            this.groupBox5.Controls.Add(this.label7);
+            this.groupBox5.Location = new System.Drawing.Point(578, 6);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(184, 160);
+            this.groupBox5.TabIndex = 1;
+            this.groupBox5.TabStop = false;
+            // 
+            // btnAddOrder
+            // 
+            this.btnAddOrder.BackColor = System.Drawing.Color.PaleGreen;
+            this.btnAddOrder.Location = new System.Drawing.Point(6, 124);
+            this.btnAddOrder.Name = "btnAddOrder";
+            this.btnAddOrder.Size = new System.Drawing.Size(172, 23);
+            this.btnAddOrder.TabIndex = 6;
+            this.btnAddOrder.Text = "Add Order";
+            this.btnAddOrder.UseVisualStyleBackColor = false;
+            this.btnAddOrder.Click += new System.EventHandler(this.btnAddOrder_Click);
+            // 
+            // dtpDueDate
+            // 
+            this.dtpDueDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDueDate.Location = new System.Drawing.Point(55, 98);
+            this.dtpDueDate.Name = "dtpDueDate";
+            this.dtpDueDate.Size = new System.Drawing.Size(123, 20);
+            this.dtpDueDate.TabIndex = 5;
+            // 
+            // nQuantity
+            // 
+            this.nQuantity.Location = new System.Drawing.Point(55, 72);
+            this.nQuantity.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.nQuantity.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nQuantity.Name = "nQuantity";
+            this.nQuantity.Size = new System.Drawing.Size(123, 20);
+            this.nQuantity.TabIndex = 4;
+            this.nQuantity.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // cbPartN
+            // 
+            this.cbPartN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPartN.FormattingEnabled = true;
+            this.cbPartN.Location = new System.Drawing.Point(55, 45);
+            this.cbPartN.Name = "cbPartN";
+            this.cbPartN.Size = new System.Drawing.Size(123, 21);
+            this.cbPartN.TabIndex = 2;
+            // 
+            // tbOrderNum
+            // 
+            this.tbOrderNum.Location = new System.Drawing.Point(55, 19);
+            this.tbOrderNum.Name = "tbOrderNum";
+            this.tbOrderNum.Size = new System.Drawing.Size(123, 20);
+            this.tbOrderNum.TabIndex = 3;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 98);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(30, 13);
+            this.label13.TabIndex = 2;
+            this.label13.Text = "Date";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 74);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(46, 13);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "Quantity";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 48);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(36, 13);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "Part #";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 22);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(43, 13);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Order #";
+            // 
+            // dgvOrders
+            // 
+            this.dgvOrders.AllowUserToAddRows = false;
+            this.dgvOrders.AllowUserToDeleteRows = false;
+            this.dgvOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvOrders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.orderNum,
+            this.partNumOrder,
+            this.quantity,
+            this.dueDate});
+            this.dgvOrders.Location = new System.Drawing.Point(6, 6);
+            this.dgvOrders.Name = "dgvOrders";
+            this.dgvOrders.ReadOnly = true;
+            this.dgvOrders.Size = new System.Drawing.Size(566, 388);
+            this.dgvOrders.TabIndex = 0;
+            // 
+            // orderNum
+            // 
+            this.orderNum.HeaderText = "Order #";
+            this.orderNum.Name = "orderNum";
+            this.orderNum.ReadOnly = true;
+            // 
+            // partNumOrder
+            // 
+            this.partNumOrder.HeaderText = "Part #";
+            this.partNumOrder.Name = "partNumOrder";
+            this.partNumOrder.ReadOnly = true;
+            // 
+            // quantity
+            // 
+            this.quantity.HeaderText = "Quantity";
+            this.quantity.Name = "quantity";
+            this.quantity.ReadOnly = true;
+            // 
+            // dueDate
+            // 
+            this.dueDate.HeaderText = "Due Date";
+            this.dueDate.Name = "dueDate";
+            this.dueDate.ReadOnly = true;
+            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.groupBox4);
@@ -171,16 +350,15 @@ namespace FoamSchedule
             this.groupBox4.Size = new System.Drawing.Size(207, 82);
             this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Delete Part";
             // 
             // btnDeletePart
             // 
-            this.btnDeletePart.BackColor = System.Drawing.Color.Crimson;
+            this.btnDeletePart.BackColor = System.Drawing.Color.LightCoral;
             this.btnDeletePart.Location = new System.Drawing.Point(9, 47);
             this.btnDeletePart.Name = "btnDeletePart";
             this.btnDeletePart.Size = new System.Drawing.Size(185, 23);
             this.btnDeletePart.TabIndex = 1;
-            this.btnDeletePart.Text = "x";
+            this.btnDeletePart.Text = "Delete Part";
             this.btnDeletePart.UseVisualStyleBackColor = false;
             this.btnDeletePart.Click += new System.EventHandler(this.btnDeletePart_Click);
             // 
@@ -205,7 +383,6 @@ namespace FoamSchedule
             this.groupBox3.Size = new System.Drawing.Size(207, 107);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Add Part";
             // 
             // btnAddPart
             // 
@@ -214,7 +391,7 @@ namespace FoamSchedule
             this.btnAddPart.Name = "btnAddPart";
             this.btnAddPart.Size = new System.Drawing.Size(185, 23);
             this.btnAddPart.TabIndex = 4;
-            this.btnAddPart.Text = "+";
+            this.btnAddPart.Text = "Add Part";
             this.btnAddPart.UseVisualStyleBackColor = false;
             this.btnAddPart.Click += new System.EventHandler(this.btnAddPart_Click);
             // 
@@ -264,6 +441,18 @@ namespace FoamSchedule
             this.dgvParts.Size = new System.Drawing.Size(543, 388);
             this.dgvParts.TabIndex = 0;
             // 
+            // partNum
+            // 
+            this.partNum.HeaderText = "Part #";
+            this.partNum.Name = "partNum";
+            this.partNum.ReadOnly = true;
+            // 
+            // numTools
+            // 
+            this.numTools.HeaderText = "# Tools";
+            this.numTools.Name = "numTools";
+            this.numTools.ReadOnly = true;
+            // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.groupBox2);
@@ -280,42 +469,31 @@ namespace FoamSchedule
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btnDelShift);
-            this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.cbShiftId);
             this.groupBox2.Location = new System.Drawing.Point(593, 170);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(169, 81);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Delete Shift";
             // 
             // btnDelShift
             // 
-            this.btnDelShift.BackColor = System.Drawing.Color.Crimson;
-            this.btnDelShift.Location = new System.Drawing.Point(9, 46);
+            this.btnDelShift.BackColor = System.Drawing.Color.LightCoral;
+            this.btnDelShift.Location = new System.Drawing.Point(6, 46);
             this.btnDelShift.Name = "btnDelShift";
-            this.btnDelShift.Size = new System.Drawing.Size(148, 23);
+            this.btnDelShift.Size = new System.Drawing.Size(157, 23);
             this.btnDelShift.TabIndex = 8;
-            this.btnDelShift.Text = "x";
+            this.btnDelShift.Text = "Delete Shift";
             this.btnDelShift.UseVisualStyleBackColor = false;
             this.btnDelShift.Click += new System.EventHandler(this.btnDelShift_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(16, 13);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Id";
             // 
             // cbShiftId
             // 
             this.cbShiftId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbShiftId.FormattingEnabled = true;
-            this.cbShiftId.Location = new System.Drawing.Point(28, 19);
+            this.cbShiftId.Location = new System.Drawing.Point(6, 19);
             this.cbShiftId.Name = "cbShiftId";
-            this.cbShiftId.Size = new System.Drawing.Size(129, 21);
+            this.cbShiftId.Size = new System.Drawing.Size(157, 21);
             this.cbShiftId.TabIndex = 9;
             // 
             // groupBox1
@@ -333,7 +511,6 @@ namespace FoamSchedule
             this.groupBox1.Size = new System.Drawing.Size(169, 158);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Add Shift";
             // 
             // label4
             // 
@@ -364,7 +541,7 @@ namespace FoamSchedule
             this.btnAddShift.Name = "btnAddShift";
             this.btnAddShift.Size = new System.Drawing.Size(151, 23);
             this.btnAddShift.TabIndex = 8;
-            this.btnAddShift.Text = "+";
+            this.btnAddShift.Text = "Add Shift";
             this.btnAddShift.UseVisualStyleBackColor = false;
             this.btnAddShift.Click += new System.EventHandler(this.btnAddShift_Click);
             // 
@@ -567,210 +744,6 @@ namespace FoamSchedule
             0});
             this.nMaxTools.ValueChanged += new System.EventHandler(this.nMaxTools_ValueChanged);
             // 
-            // partNum
-            // 
-            this.partNum.HeaderText = "Part #";
-            this.partNum.Name = "partNum";
-            this.partNum.ReadOnly = true;
-            // 
-            // numTools
-            // 
-            this.numTools.HeaderText = "# Tools";
-            this.numTools.Name = "numTools";
-            this.numTools.ReadOnly = true;
-            // 
-            // dgvOrders
-            // 
-            this.dgvOrders.AllowUserToAddRows = false;
-            this.dgvOrders.AllowUserToDeleteRows = false;
-            this.dgvOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOrders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.orderNum,
-            this.partNumOrder,
-            this.quantity,
-            this.dueDate});
-            this.dgvOrders.Location = new System.Drawing.Point(6, 6);
-            this.dgvOrders.Name = "dgvOrders";
-            this.dgvOrders.ReadOnly = true;
-            this.dgvOrders.Size = new System.Drawing.Size(566, 388);
-            this.dgvOrders.TabIndex = 0;
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.btnAddOrder);
-            this.groupBox5.Controls.Add(this.dtpDueDate);
-            this.groupBox5.Controls.Add(this.nQuantity);
-            this.groupBox5.Controls.Add(this.cbPartN);
-            this.groupBox5.Controls.Add(this.tbOrderNum);
-            this.groupBox5.Controls.Add(this.label13);
-            this.groupBox5.Controls.Add(this.label9);
-            this.groupBox5.Controls.Add(this.label8);
-            this.groupBox5.Controls.Add(this.label7);
-            this.groupBox5.Location = new System.Drawing.Point(578, 6);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(184, 160);
-            this.groupBox5.TabIndex = 1;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Add Order";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 22);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(43, 13);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Order #";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 48);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(36, 13);
-            this.label8.TabIndex = 1;
-            this.label8.Text = "Part #";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 74);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(46, 13);
-            this.label9.TabIndex = 2;
-            this.label9.Text = "Quantity";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 98);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(30, 13);
-            this.label13.TabIndex = 2;
-            this.label13.Text = "Date";
-            // 
-            // tbOrderNum
-            // 
-            this.tbOrderNum.Location = new System.Drawing.Point(55, 19);
-            this.tbOrderNum.Name = "tbOrderNum";
-            this.tbOrderNum.Size = new System.Drawing.Size(123, 20);
-            this.tbOrderNum.TabIndex = 3;
-            // 
-            // cbPartN
-            // 
-            this.cbPartN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPartN.FormattingEnabled = true;
-            this.cbPartN.Location = new System.Drawing.Point(55, 45);
-            this.cbPartN.Name = "cbPartN";
-            this.cbPartN.Size = new System.Drawing.Size(123, 21);
-            this.cbPartN.TabIndex = 2;
-            // 
-            // nQuantity
-            // 
-            this.nQuantity.Location = new System.Drawing.Point(55, 72);
-            this.nQuantity.Maximum = new decimal(new int[] {
-            99999,
-            0,
-            0,
-            0});
-            this.nQuantity.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nQuantity.Name = "nQuantity";
-            this.nQuantity.Size = new System.Drawing.Size(123, 20);
-            this.nQuantity.TabIndex = 4;
-            this.nQuantity.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // dtpDueDate
-            // 
-            this.dtpDueDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDueDate.Location = new System.Drawing.Point(55, 98);
-            this.dtpDueDate.Name = "dtpDueDate";
-            this.dtpDueDate.Size = new System.Drawing.Size(123, 20);
-            this.dtpDueDate.TabIndex = 5;
-            // 
-            // btnAddOrder
-            // 
-            this.btnAddOrder.BackColor = System.Drawing.Color.PaleGreen;
-            this.btnAddOrder.Location = new System.Drawing.Point(6, 124);
-            this.btnAddOrder.Name = "btnAddOrder";
-            this.btnAddOrder.Size = new System.Drawing.Size(172, 23);
-            this.btnAddOrder.TabIndex = 6;
-            this.btnAddOrder.Text = "+";
-            this.btnAddOrder.UseVisualStyleBackColor = false;
-            this.btnAddOrder.Click += new System.EventHandler(this.btnAddOrder_Click);
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.btnDeleteOrder);
-            this.groupBox6.Controls.Add(this.cbOrderNum);
-            this.groupBox6.Controls.Add(this.label14);
-            this.groupBox6.Location = new System.Drawing.Point(578, 172);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(184, 81);
-            this.groupBox6.TabIndex = 2;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Delete Order";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 22);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(43, 13);
-            this.label14.TabIndex = 1;
-            this.label14.Text = "Order #";
-            // 
-            // cbOrderNum
-            // 
-            this.cbOrderNum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbOrderNum.FormattingEnabled = true;
-            this.cbOrderNum.Location = new System.Drawing.Point(55, 19);
-            this.cbOrderNum.Name = "cbOrderNum";
-            this.cbOrderNum.Size = new System.Drawing.Size(123, 21);
-            this.cbOrderNum.TabIndex = 3;
-            // 
-            // btnDeleteOrder
-            // 
-            this.btnDeleteOrder.BackColor = System.Drawing.Color.Crimson;
-            this.btnDeleteOrder.Location = new System.Drawing.Point(6, 46);
-            this.btnDeleteOrder.Name = "btnDeleteOrder";
-            this.btnDeleteOrder.Size = new System.Drawing.Size(172, 23);
-            this.btnDeleteOrder.TabIndex = 7;
-            this.btnDeleteOrder.Text = "x";
-            this.btnDeleteOrder.UseVisualStyleBackColor = false;
-            this.btnDeleteOrder.Click += new System.EventHandler(this.btnDeleteOrder_Click);
-            // 
-            // orderNum
-            // 
-            this.orderNum.HeaderText = "Order #";
-            this.orderNum.Name = "orderNum";
-            this.orderNum.ReadOnly = true;
-            // 
-            // partNumOrder
-            // 
-            this.partNumOrder.HeaderText = "Part #";
-            this.partNumOrder.Name = "partNumOrder";
-            this.partNumOrder.ReadOnly = true;
-            // 
-            // quantity
-            // 
-            this.quantity.HeaderText = "Quantity";
-            this.quantity.Name = "quantity";
-            this.quantity.ReadOnly = true;
-            // 
-            // dueDate
-            // 
-            this.dueDate.HeaderText = "Due Date";
-            this.dueDate.Name = "dueDate";
-            this.dueDate.ReadOnly = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -782,6 +755,11 @@ namespace FoamSchedule
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nQuantity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
@@ -790,7 +768,6 @@ namespace FoamSchedule
             ((System.ComponentModel.ISupportInitialize)(this.dgvParts)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nBreakHours)).EndInit();
@@ -800,12 +777,6 @@ namespace FoamSchedule
             ((System.ComponentModel.ISupportInitialize)(this.nOverallEfficiency)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nLineCycle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nMaxTools)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).EndInit();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nQuantity)).EndInit();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -834,7 +805,6 @@ namespace FoamSchedule
         private System.Windows.Forms.Button btnAddShift;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnDelShift;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbShiftId;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn weekdayName;
@@ -858,7 +828,6 @@ namespace FoamSchedule
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Button btnDeleteOrder;
         private System.Windows.Forms.ComboBox cbOrderNum;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button btnAddOrder;
         private System.Windows.Forms.DateTimePicker dtpDueDate;
