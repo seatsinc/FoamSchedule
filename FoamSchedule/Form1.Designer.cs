@@ -345,9 +345,9 @@ namespace FoamSchedule
             // 
             this.groupBox4.Controls.Add(this.btnDeletePart);
             this.groupBox4.Controls.Add(this.cbPartNum);
-            this.groupBox4.Location = new System.Drawing.Point(555, 119);
+            this.groupBox4.Location = new System.Drawing.Point(578, 119);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(207, 82);
+            this.groupBox4.Size = new System.Drawing.Size(184, 82);
             this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
             // 
@@ -356,7 +356,7 @@ namespace FoamSchedule
             this.btnDeletePart.BackColor = System.Drawing.Color.LightCoral;
             this.btnDeletePart.Location = new System.Drawing.Point(9, 47);
             this.btnDeletePart.Name = "btnDeletePart";
-            this.btnDeletePart.Size = new System.Drawing.Size(185, 23);
+            this.btnDeletePart.Size = new System.Drawing.Size(169, 23);
             this.btnDeletePart.TabIndex = 1;
             this.btnDeletePart.Text = "Delete Part";
             this.btnDeletePart.UseVisualStyleBackColor = false;
@@ -368,7 +368,7 @@ namespace FoamSchedule
             this.cbPartNum.FormattingEnabled = true;
             this.cbPartNum.Location = new System.Drawing.Point(9, 19);
             this.cbPartNum.Name = "cbPartNum";
-            this.cbPartNum.Size = new System.Drawing.Size(185, 21);
+            this.cbPartNum.Size = new System.Drawing.Size(169, 21);
             this.cbPartNum.TabIndex = 0;
             // 
             // groupBox3
@@ -378,9 +378,9 @@ namespace FoamSchedule
             this.groupBox3.Controls.Add(this.nNumTools);
             this.groupBox3.Controls.Add(this.tbPartNum);
             this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Location = new System.Drawing.Point(555, 6);
+            this.groupBox3.Location = new System.Drawing.Point(578, 6);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(207, 107);
+            this.groupBox3.Size = new System.Drawing.Size(184, 107);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             // 
@@ -389,7 +389,7 @@ namespace FoamSchedule
             this.btnAddPart.BackColor = System.Drawing.Color.PaleGreen;
             this.btnAddPart.Location = new System.Drawing.Point(9, 71);
             this.btnAddPart.Name = "btnAddPart";
-            this.btnAddPart.Size = new System.Drawing.Size(185, 23);
+            this.btnAddPart.Size = new System.Drawing.Size(169, 23);
             this.btnAddPart.TabIndex = 4;
             this.btnAddPart.Text = "Add Part";
             this.btnAddPart.UseVisualStyleBackColor = false;
@@ -408,14 +408,14 @@ namespace FoamSchedule
             // 
             this.nNumTools.Location = new System.Drawing.Point(55, 45);
             this.nNumTools.Name = "nNumTools";
-            this.nNumTools.Size = new System.Drawing.Size(139, 20);
+            this.nNumTools.Size = new System.Drawing.Size(123, 20);
             this.nNumTools.TabIndex = 2;
             // 
             // tbPartNum
             // 
             this.tbPartNum.Location = new System.Drawing.Point(55, 19);
             this.tbPartNum.Name = "tbPartNum";
-            this.tbPartNum.Size = new System.Drawing.Size(139, 20);
+            this.tbPartNum.Size = new System.Drawing.Size(123, 20);
             this.tbPartNum.TabIndex = 1;
             // 
             // label5
@@ -438,7 +438,7 @@ namespace FoamSchedule
             this.dgvParts.Location = new System.Drawing.Point(6, 6);
             this.dgvParts.Name = "dgvParts";
             this.dgvParts.ReadOnly = true;
-            this.dgvParts.Size = new System.Drawing.Size(543, 388);
+            this.dgvParts.Size = new System.Drawing.Size(566, 388);
             this.dgvParts.TabIndex = 0;
             // 
             // partNum
@@ -470,9 +470,9 @@ namespace FoamSchedule
             // 
             this.groupBox2.Controls.Add(this.btnDelShift);
             this.groupBox2.Controls.Add(this.cbShiftId);
-            this.groupBox2.Location = new System.Drawing.Point(593, 170);
+            this.groupBox2.Location = new System.Drawing.Point(578, 170);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(169, 81);
+            this.groupBox2.Size = new System.Drawing.Size(184, 81);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             // 
@@ -481,7 +481,7 @@ namespace FoamSchedule
             this.btnDelShift.BackColor = System.Drawing.Color.LightCoral;
             this.btnDelShift.Location = new System.Drawing.Point(6, 46);
             this.btnDelShift.Name = "btnDelShift";
-            this.btnDelShift.Size = new System.Drawing.Size(157, 23);
+            this.btnDelShift.Size = new System.Drawing.Size(172, 23);
             this.btnDelShift.TabIndex = 8;
             this.btnDelShift.Text = "Delete Shift";
             this.btnDelShift.UseVisualStyleBackColor = false;
@@ -493,7 +493,7 @@ namespace FoamSchedule
             this.cbShiftId.FormattingEnabled = true;
             this.cbShiftId.Location = new System.Drawing.Point(6, 19);
             this.cbShiftId.Name = "cbShiftId";
-            this.cbShiftId.Size = new System.Drawing.Size(157, 21);
+            this.cbShiftId.Size = new System.Drawing.Size(172, 21);
             this.cbShiftId.TabIndex = 9;
             // 
             // groupBox1
@@ -506,9 +506,9 @@ namespace FoamSchedule
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.dtpShiftStart);
             this.groupBox1.Controls.Add(this.dtpShiftEnd);
-            this.groupBox1.Location = new System.Drawing.Point(593, 6);
+            this.groupBox1.Location = new System.Drawing.Point(578, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(169, 158);
+            this.groupBox1.Size = new System.Drawing.Size(184, 158);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             // 
@@ -531,7 +531,7 @@ namespace FoamSchedule
             131072});
             this.nBreakHours.Location = new System.Drawing.Point(78, 95);
             this.nBreakHours.Name = "nBreakHours";
-            this.nBreakHours.Size = new System.Drawing.Size(79, 20);
+            this.nBreakHours.Size = new System.Drawing.Size(100, 20);
             this.nBreakHours.TabIndex = 9;
             // 
             // btnAddShift
@@ -539,7 +539,7 @@ namespace FoamSchedule
             this.btnAddShift.BackColor = System.Drawing.Color.PaleGreen;
             this.btnAddShift.Location = new System.Drawing.Point(6, 121);
             this.btnAddShift.Name = "btnAddShift";
-            this.btnAddShift.Size = new System.Drawing.Size(151, 23);
+            this.btnAddShift.Size = new System.Drawing.Size(172, 23);
             this.btnAddShift.TabIndex = 8;
             this.btnAddShift.Text = "Add Shift";
             this.btnAddShift.UseVisualStyleBackColor = false;
@@ -551,7 +551,7 @@ namespace FoamSchedule
             this.cbWeekdays.FormattingEnabled = true;
             this.cbWeekdays.Location = new System.Drawing.Point(6, 19);
             this.cbWeekdays.Name = "cbWeekdays";
-            this.cbWeekdays.Size = new System.Drawing.Size(151, 21);
+            this.cbWeekdays.Size = new System.Drawing.Size(172, 21);
             this.cbWeekdays.TabIndex = 7;
             // 
             // label2
@@ -578,7 +578,7 @@ namespace FoamSchedule
             this.dtpShiftStart.Location = new System.Drawing.Point(41, 43);
             this.dtpShiftStart.Name = "dtpShiftStart";
             this.dtpShiftStart.ShowUpDown = true;
-            this.dtpShiftStart.Size = new System.Drawing.Size(116, 20);
+            this.dtpShiftStart.Size = new System.Drawing.Size(137, 20);
             this.dtpShiftStart.TabIndex = 2;
             // 
             // dtpShiftEnd
@@ -587,7 +587,7 @@ namespace FoamSchedule
             this.dtpShiftEnd.Location = new System.Drawing.Point(41, 69);
             this.dtpShiftEnd.Name = "dtpShiftEnd";
             this.dtpShiftEnd.ShowUpDown = true;
-            this.dtpShiftEnd.Size = new System.Drawing.Size(116, 20);
+            this.dtpShiftEnd.Size = new System.Drawing.Size(137, 20);
             this.dtpShiftEnd.TabIndex = 4;
             // 
             // dgvShifts
@@ -604,7 +604,7 @@ namespace FoamSchedule
             this.dgvShifts.Location = new System.Drawing.Point(6, 6);
             this.dgvShifts.Name = "dgvShifts";
             this.dgvShifts.ReadOnly = true;
-            this.dgvShifts.Size = new System.Drawing.Size(581, 388);
+            this.dgvShifts.Size = new System.Drawing.Size(566, 388);
             this.dgvShifts.TabIndex = 0;
             // 
             // id
