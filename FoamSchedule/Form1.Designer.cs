@@ -73,7 +73,7 @@ namespace FoamSchedule
             this.cbShiftId = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button3 = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbShifts = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -558,7 +558,7 @@ namespace FoamSchedule
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.comboBox2);
+            this.groupBox1.Controls.Add(this.cbShifts);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.label4);
@@ -584,14 +584,14 @@ namespace FoamSchedule
             this.button3.Text = "Add Block";
             this.button3.UseVisualStyleBackColor = false;
             // 
-            // comboBox2
+            // cbShifts
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(40, 13);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(138, 21);
-            this.comboBox2.TabIndex = 13;
+            this.cbShifts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbShifts.FormattingEnabled = true;
+            this.cbShifts.Location = new System.Drawing.Point(40, 13);
+            this.cbShifts.Name = "cbShifts";
+            this.cbShifts.Size = new System.Drawing.Size(138, 21);
+            this.cbShifts.TabIndex = 13;
             // 
             // label15
             // 
@@ -1035,7 +1035,7 @@ namespace FoamSchedule
         private System.Windows.Forms.DataGridView dgvFoamSchedule;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cbShifts;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;

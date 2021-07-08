@@ -124,11 +124,12 @@ namespace FoamSchedule
 
             this.populateParts();
 
-            if (this.cbPartNum.Items.Count > 0)
+            if (this.parts.Count > 0)
+            {
                 this.cbPartNum.SelectedIndex = 0;
-
-            if (this.cbPartN.Items.Count > 0)
                 this.cbPartN.SelectedIndex = 0;
+            }
+                
 
         }
 
@@ -220,7 +221,7 @@ namespace FoamSchedule
 
             this.populateOrders();
 
-            if (this.cbOrderNum.Items.Count > 0)
+            if (this.orders.Count > 0)
                 this.cbOrderNum.SelectedIndex = 0;
         }
 
@@ -276,6 +277,7 @@ namespace FoamSchedule
         {
             this.cbShift.Items.Clear();
             this.dgvShifts.Rows.Clear();
+            this.cbShifts.Items.Clear();
 
             for (int i = 0; i < this.shifts.Count; ++i)
             {
@@ -285,12 +287,15 @@ namespace FoamSchedule
                 this.dgvShifts["shift", i].Value = s.getName();
 
                 this.cbShift.Items.Add(s.getName());
+                this.cbShifts.Items.Add(s.getName());
             }
 
             if (this.shifts.Count > 0)
             {
                 this.cbShift.SelectedIndex = 0;
+                this.cbShifts.SelectedIndex = 0;
             }
+                
         }
     }
 }
