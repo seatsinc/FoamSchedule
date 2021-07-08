@@ -8,43 +8,16 @@ namespace FoamSchedule
 {
     public class Shift
     {
-        private int id;
-        private string weekdayName;
-        private DateTime start, end;
-        private double breakHours;
+        private string name;
 
-        public Shift(int i, string wd, DateTime s, DateTime e, double bh)
+        public Shift(string n)
         {
-            this.id = i;
-            this.weekdayName = wd;
-            this.start = s;
-            this.end = e;
-            this.breakHours = bh;
+            this.name = n;
         }
 
-        public int getId()
+        public string getName()
         {
-            return this.id;
-        }
-
-        public string getWeekdayName()
-        {
-            return this.weekdayName;
-        }
-
-        public DateTime getStart()
-        {
-            return this.start;
-        }
-
-        public DateTime getEnd()
-        {
-            return this.end;
-        }
-
-        public double getBreakHours()
-        {
-            return this.breakHours;
+            return this.name;
         }
 
 

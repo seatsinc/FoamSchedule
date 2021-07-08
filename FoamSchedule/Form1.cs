@@ -26,9 +26,9 @@ namespace FoamSchedule
         private void Form1_Load(object sender, EventArgs e)
         {
             this.refreshConstants();
-            this.refreshShifts();
             this.refreshParts();
             this.refreshOrders();
+            this.refreshShifts();
             this.initWeekdays();
             
         }
@@ -83,75 +83,6 @@ namespace FoamSchedule
         }
 
 
-
-        private void btnAddShift_Click(object sender, EventArgs e)
-        {
-            DatabaseHandler dh = new DatabaseHandler("database.db");
-
-            dh.executeNonQuery($"insert into SHIFTS (WEEKDAY_NAME, START, END, BREAK_HOURS) VALUES (\"{this.cbWeekdays.SelectedItem}\", \"{this.dtpShiftStart.Value.ToShortTimeString()}\", \"{this.dtpShiftEnd.Value.ToShortTimeString()}\", \"{this.nBreakHours.Value}\")");
-
-            this.refreshShifts();
-        }
-
-        private void populateShifts()
-        {
-
-            this.dgvShifts.Rows.Clear();
-
-            for (int i = 0; i < this.shifts.Count; ++i)
-            {
-                Shift s = this.shifts[i];
-
-                this.dgvShifts.Rows.Add();
-
-                this.dgvShifts["id", i].Value = s.getId();
-                this.dgvShifts["weekdayName", i].Value = s.getWeekdayName();
-                this.dgvShifts["start", i].Value = s.getStart().ToShortTimeString();
-                this.dgvShifts["end", i].Value = s.getEnd().ToShortTimeString();
-                this.dgvShifts["breakHours", i].Value = s.getBreakHours();
-
-            }
-        }
-
-        private void refreshShifts()
-        {
-            this.cbShiftId.Items.Clear();
-            this.shifts.Clear();
-
-            DatabaseHandler dh = new DatabaseHandler("database.db");
-
-            DataTable dt = dh.executeQuery("select * from SHIFTS");
-
-            foreach (DataRow dr in dt.Rows)
-            {
-                this.cbShiftId.Items.Add(dr["ID"].ToString());
-
-                this.shifts.Add(new Shift(
-                    Convert.ToInt32(dr["ID"].ToString()),
-                    dr["WEEKDAY_NAME"].ToString(),
-                    DateTime.Parse(dr["START"].ToString()),
-                    DateTime.Parse(dr["END"].ToString()),
-                    Convert.ToDouble(dr["BREAK_HOURS"].ToString())
-                    ));
-            }
-
-            this.populateShifts();
-
-            if (this.cbShiftId.Items.Count > 0)
-                this.cbShiftId.SelectedIndex = 0;
-        }
-
-        private void btnDelShift_Click(object sender, EventArgs e)
-        {
-            if (this.shifts.Count == 0)
-                return;
-
-            DatabaseHandler dh = new DatabaseHandler("database.db");
-
-            dh.executeNonQuery($"delete from SHIFTS where ID={this.cbShiftId.SelectedItem}");
-
-            this.refreshShifts();
-        }
 
         private void btnAddPart_Click(object sender, EventArgs e)
         {
@@ -303,6 +234,63 @@ namespace FoamSchedule
             dh.executeNonQuery($"delete from ORDERS where ORDER_NUM=\"{this.cbOrderNum.SelectedItem}\"");
 
             this.refreshOrders();
+        }
+
+        private void btnAddShift_Click(object sender, EventArgs e)
+        {
+            DatabaseHandler dh = new DatabaseHandler("database.db");
+
+            dh.executeNonQuery($"insert into SHIFTS (NAME) VALUES (\"{this.tbShift.Text}\")");
+
+            this.refreshShifts();
+
+        }
+
+        private void btnDeleteShift_Click(object sender, EventArgs e)
+        {
+            DatabaseHandler dh = new DatabaseHandler("database.db");
+
+            dh.executeNonQuery($"delete from SHIFTS where NAME=\"{this.cbShift.SelectedItem}\"");
+
+            this.refreshShifts();
+        }
+
+        private void refreshShifts()
+        {
+
+            this.shifts.Clear();
+
+            DatabaseHandler dh = new DatabaseHandler("database.db");
+
+            DataTable dt = dh.executeQuery("select * from SHIFTS");
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                this.shifts.Add(new Shift(dr["NAME"].ToString()));
+            }
+
+            this.populateShifts();
+        }
+
+        private void populateShifts()
+        {
+            this.cbShift.Items.Clear();
+            this.dgvShifts.Rows.Clear();
+
+            for (int i = 0; i < this.shifts.Count; ++i)
+            {
+                Shift s = this.shifts[i];
+
+                this.dgvShifts.Rows.Add();
+                this.dgvShifts["shift", i].Value = s.getName();
+
+                this.cbShift.Items.Add(s.getName());
+            }
+
+            if (this.shifts.Count > 0)
+            {
+                this.cbShift.SelectedIndex = 0;
+            }
         }
     }
 }
