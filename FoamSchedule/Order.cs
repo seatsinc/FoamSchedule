@@ -43,7 +43,7 @@ namespace FoamSchedule
 
         public double getPriority(DateTime refDate)
         {
-            double daysTill = (refDate - this.getDueDate()).TotalDays;
+            double daysTill = (refDate - this.getDueDate()).Days;
 
             double exp = 1.0;
 
