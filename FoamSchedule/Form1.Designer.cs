@@ -69,10 +69,10 @@ namespace FoamSchedule
             this.numTools = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.cbShiftId = new System.Windows.Forms.ComboBox();
+            this.btnDeleteBlock = new System.Windows.Forms.Button();
+            this.cbBlockId = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnAddBlock = new System.Windows.Forms.Button();
             this.cbShifts = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -528,36 +528,37 @@ namespace FoamSchedule
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button4);
-            this.groupBox2.Controls.Add(this.cbShiftId);
+            this.groupBox2.Controls.Add(this.btnDeleteBlock);
+            this.groupBox2.Controls.Add(this.cbBlockId);
             this.groupBox2.Location = new System.Drawing.Point(578, 188);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(184, 81);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             // 
-            // button4
+            // btnDeleteBlock
             // 
-            this.button4.BackColor = System.Drawing.Color.LightCoral;
-            this.button4.Location = new System.Drawing.Point(6, 46);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(172, 23);
-            this.button4.TabIndex = 10;
-            this.button4.Text = "Delete Block";
-            this.button4.UseVisualStyleBackColor = false;
+            this.btnDeleteBlock.BackColor = System.Drawing.Color.LightCoral;
+            this.btnDeleteBlock.Location = new System.Drawing.Point(6, 46);
+            this.btnDeleteBlock.Name = "btnDeleteBlock";
+            this.btnDeleteBlock.Size = new System.Drawing.Size(172, 23);
+            this.btnDeleteBlock.TabIndex = 10;
+            this.btnDeleteBlock.Text = "Delete Block";
+            this.btnDeleteBlock.UseVisualStyleBackColor = false;
+            this.btnDeleteBlock.Click += new System.EventHandler(this.btnDeleteBlock_Click);
             // 
-            // cbShiftId
+            // cbBlockId
             // 
-            this.cbShiftId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbShiftId.FormattingEnabled = true;
-            this.cbShiftId.Location = new System.Drawing.Point(6, 19);
-            this.cbShiftId.Name = "cbShiftId";
-            this.cbShiftId.Size = new System.Drawing.Size(172, 21);
-            this.cbShiftId.TabIndex = 9;
+            this.cbBlockId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbBlockId.FormattingEnabled = true;
+            this.cbBlockId.Location = new System.Drawing.Point(6, 19);
+            this.cbBlockId.Name = "cbBlockId";
+            this.cbBlockId.Size = new System.Drawing.Size(172, 21);
+            this.cbBlockId.TabIndex = 9;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.btnAddBlock);
             this.groupBox1.Controls.Add(this.cbShifts);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.label14);
@@ -574,15 +575,16 @@ namespace FoamSchedule
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             // 
-            // button3
+            // btnAddBlock
             // 
-            this.button3.BackColor = System.Drawing.Color.PaleGreen;
-            this.button3.Location = new System.Drawing.Point(6, 142);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(172, 23);
-            this.button3.TabIndex = 14;
-            this.button3.Text = "Add Block";
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnAddBlock.BackColor = System.Drawing.Color.PaleGreen;
+            this.btnAddBlock.Location = new System.Drawing.Point(6, 142);
+            this.btnAddBlock.Name = "btnAddBlock";
+            this.btnAddBlock.Size = new System.Drawing.Size(172, 23);
+            this.btnAddBlock.TabIndex = 14;
+            this.btnAddBlock.Text = "Add Block";
+            this.btnAddBlock.UseVisualStyleBackColor = false;
+            this.btnAddBlock.Click += new System.EventHandler(this.btnAddBlock_Click);
             // 
             // cbShifts
             // 
@@ -998,7 +1000,7 @@ namespace FoamSchedule
         private System.Windows.Forms.DateTimePicker dtpShiftEnd;
         private System.Windows.Forms.DataGridView dgvBlocks;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ComboBox cbShiftId;
+        private System.Windows.Forms.ComboBox cbBlockId;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown nBreakHours;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -1053,8 +1055,8 @@ namespace FoamSchedule
         private System.Windows.Forms.ComboBox cbShift;
         private System.Windows.Forms.DataGridView dgvShifts;
         private System.Windows.Forms.DataGridViewTextBoxColumn shift;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnDeleteBlock;
+        private System.Windows.Forms.Button btnAddBlock;
     }
 }
 

@@ -14,6 +14,7 @@ namespace FoamSchedule
 {
     public partial class Form1 : Form
     {
+        private List<Block> blocks = new List<Block>();
         private List<Shift> shifts = new List<Shift>();
         private List<Part> parts = new List<Part>();
         private List<Order> orders = new List<Order>();
@@ -29,8 +30,9 @@ namespace FoamSchedule
             this.refreshParts();
             this.refreshOrders();
             this.refreshShifts();
+            this.refreshBlocks();
             this.initWeekdays();
-            
+
         }
 
         private void refreshConstants()
@@ -73,7 +75,7 @@ namespace FoamSchedule
             DatabaseHandler dh = new DatabaseHandler("database.db");
 
             DataTable dt = dh.executeQuery("select NAME from WEEKDAYS");
-            
+
             foreach (DataRow dr in dt.Rows)
             {
                 this.cbWeekdays.Items.Add(dr["NAME"].ToString());
@@ -129,7 +131,7 @@ namespace FoamSchedule
                 this.cbPartNum.SelectedIndex = 0;
                 this.cbPartN.SelectedIndex = 0;
             }
-                
+
 
         }
 
@@ -157,7 +159,7 @@ namespace FoamSchedule
             DatabaseHandler dh = new DatabaseHandler("database.db");
 
             dh.executeNonQuery($"delete from ORDERS where PART_NUM=\"{this.cbPartNum.SelectedItem}\"");
-            
+
             dh.executeNonQuery($"delete from PARTS where PART_NUM=\"{this.cbPartNum.SelectedItem}\"");
 
             this.refreshParts();
@@ -209,7 +211,7 @@ namespace FoamSchedule
                 DataTable dt2 = dh2.executeQuery($"select * from PARTS where PART_NUM=\"{dr["PART_NUM"]}\"");
 
                 DataRow dr2 = dt2.Rows[0];
-                
+
 
                 this.orders.Add(new Order(
                     dr["ORDER_NUM"].ToString(),
@@ -251,9 +253,11 @@ namespace FoamSchedule
         {
             DatabaseHandler dh = new DatabaseHandler("database.db");
 
+            dh.executeNonQuery($"delete from BLOCKS where SHIFT=\"{this.cbShift.SelectedItem}\"");
             dh.executeNonQuery($"delete from SHIFTS where NAME=\"{this.cbShift.SelectedItem}\"");
 
             this.refreshShifts();
+            this.refreshBlocks();
         }
 
         private void refreshShifts()
@@ -295,7 +299,76 @@ namespace FoamSchedule
                 this.cbShift.SelectedIndex = 0;
                 this.cbShifts.SelectedIndex = 0;
             }
-                
+
+        }
+
+        private void refreshBlocks()
+        {
+            this.blocks.Clear();
+
+            DatabaseHandler dbh = new DatabaseHandler("database.db");
+
+            DataTable dt = dbh.executeQuery("select * from BLOCKS");
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                this.blocks.Add(new Block(
+                    dr["WEEKDAY_NAME"].ToString(),
+                    Convert.ToInt32(dr["ID"].ToString()),
+                    Convert.ToDateTime(dr["START"].ToString()),
+                    Convert.ToDateTime(dr["END"].ToString()),
+                    Convert.ToDouble(dr["BREAK_HOURS"].ToString()),
+                    new Shift(dr["SHIFT"].ToString())
+                ));
+            }
+
+            this.populateBlocks();
+        }
+
+        private void populateBlocks()
+        {
+            this.cbBlockId.Items.Clear();
+            this.dgvBlocks.Rows.Clear();
+
+            for (int i = 0; i < this.blocks.Count; ++i)
+            {
+                Block b = this.blocks[i];
+
+                this.dgvBlocks.Rows.Add();
+
+                this.cbBlockId.Items.Add(b.getId());
+
+                this.dgvBlocks["id", i].Value = b.getId();
+                this.dgvBlocks["shiftName", i].Value = b.getShift().getName();
+                this.dgvBlocks["weekdayName", i].Value = b.getWeekday();
+                this.dgvBlocks["start", i].Value = b.getStartTime().ToShortTimeString();
+                this.dgvBlocks["end", i].Value = b.getEndTime().ToShortTimeString();
+                this.dgvBlocks["breakHours", i].Value = b.getBreakHours();
+
+            }
+
+            if (this.cbBlockId.Items.Count > 0)
+            {
+                this.cbBlockId.SelectedIndex = 0;
+            }
+        }
+
+        private void btnAddBlock_Click(object sender, EventArgs e)
+        {
+            DatabaseHandler dbh = new DatabaseHandler("database.db");
+
+            dbh.executeNonQuery($"insert into BLOCKS (SHIFT, WEEKDAY_NAME, START, END, BREAK_HOURS) VALUES (\"{this.cbShifts.SelectedItem}\", \"{this.cbWeekdays.SelectedItem}\", \"{this.dtpShiftStart.Value.ToShortTimeString()}\", \"{this.dtpShiftEnd.Value.ToShortTimeString()}\", {this.nBreakHours.Value})");
+
+            this.refreshBlocks();
+        }
+
+        private void btnDeleteBlock_Click(object sender, EventArgs e)
+        {
+            DatabaseHandler dbh = new DatabaseHandler("database.db");
+
+            dbh.executeNonQuery($"delete from BLOCKS where ID={this.cbBlockId.SelectedItem}");
+
+            this.refreshBlocks();
         }
     }
 }
