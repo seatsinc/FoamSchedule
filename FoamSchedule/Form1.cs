@@ -39,13 +39,13 @@ namespace FoamSchedule
         {
             DatabaseHandler dh = new DatabaseHandler("database.db");
 
-            DataTable dt = dh.executeQuery("select VALUE from CONSTANTS where NAME=\"MAX_TOOLS\"");
+            DataTable dt = dh.executeQuery("select VALUE from CONSTANTS where NAME='MAX_TOOLS'");
             this.nMaxTools.Value = Convert.ToInt32(dt.Rows[0]["VALUE"].ToString());
 
-            dt = dh.executeQuery("select VALUE from CONSTANTS where NAME=\"LINE_CYCLE\"");
+            dt = dh.executeQuery("select VALUE from CONSTANTS where NAME='LINE_CYCLE'");
             this.nLineCycle.Value = Convert.ToInt32(dt.Rows[0]["VALUE"].ToString());
 
-            dt = dh.executeQuery("select VALUE from CONSTANTS where NAME=\"OVERALL_EFFICIENCY\"");
+            dt = dh.executeQuery("select VALUE from CONSTANTS where NAME='OVERALL_EFFICIENCY'");
             this.nOverallEfficiency.Value = Convert.ToInt32(dt.Rows[0]["VALUE"].ToString());
         }
 
@@ -53,21 +53,21 @@ namespace FoamSchedule
         {
             DatabaseHandler dh = new DatabaseHandler("database.db");
 
-            dh.executeNonQuery($"update CONSTANTS set VALUE={this.nMaxTools.Value} where NAME=\"MAX_TOOLS\"");
+            dh.executeNonQuery($"update CONSTANTS set VALUE={this.nMaxTools.Value} where NAME='MAX_TOOLS'");
         }
 
         private void nLineCycle_ValueChanged(object sender, EventArgs e)
         {
             DatabaseHandler dh = new DatabaseHandler("database.db");
 
-            dh.executeNonQuery($"update CONSTANTS set VALUE={this.nLineCycle.Value} where NAME=\"LINE_CYCLE\"");
+            dh.executeNonQuery($"update CONSTANTS set VALUE={this.nLineCycle.Value} where NAME='LINE_CYCLE'");
         }
 
         private void nOverallEfficiency_ValueChanged(object sender, EventArgs e)
         {
             DatabaseHandler dh = new DatabaseHandler("database.db");
 
-            dh.executeNonQuery($"update CONSTANTS set VALUE={this.nOverallEfficiency.Value} where NAME=\"OVERALL_EFFICIENCY\"");
+            dh.executeNonQuery($"update CONSTANTS set VALUE={this.nOverallEfficiency.Value} where NAME='OVERALL_EFFICIENCY'");
         }
 
         private void initWeekdays()
@@ -92,7 +92,7 @@ namespace FoamSchedule
 
             try
             {
-                dh.executeNonQuery($"insert into PARTS (PART_NUM, NUM_TOOLS) VALUES (\"{this.tbPartNum.Text}\", {this.nNumTools.Value})");
+                dh.executeNonQuery($"insert into PARTS (PART_NUM, NUM_TOOLS) VALUES ('{this.tbPartNum.Text}', {this.nNumTools.Value})");
             }
             catch (SQLiteException exc)
             {
@@ -158,9 +158,9 @@ namespace FoamSchedule
 
             DatabaseHandler dh = new DatabaseHandler("database.db");
 
-            dh.executeNonQuery($"delete from ORDERS where PART_NUM=\"{this.cbPartNum.SelectedItem}\"");
+            dh.executeNonQuery($"delete from ORDERS where PART_NUM='{this.cbPartNum.SelectedItem}'");
 
-            dh.executeNonQuery($"delete from PARTS where PART_NUM=\"{this.cbPartNum.SelectedItem}\"");
+            dh.executeNonQuery($"delete from PARTS where PART_NUM='{this.cbPartNum.SelectedItem}'");
 
             this.refreshParts();
             this.refreshOrders();
@@ -170,7 +170,7 @@ namespace FoamSchedule
         {
             DatabaseHandler dh = new DatabaseHandler("database.db");
 
-            dh.executeNonQuery($"insert into ORDERS (ORDER_NUM, PART_NUM, QUANTITY, DATE) VALUES (\"{this.tbOrderNum.Text}\", \"{this.cbPartN.SelectedItem}\", {this.nQuantity.Value}, \"{this.dtpDueDate.Value.ToShortDateString()}\")");
+            dh.executeNonQuery($"insert into ORDERS (ORDER_NUM, PART_NUM, QUANTITY, DATE) VALUES ('{this.tbOrderNum.Text}', '{this.cbPartN.SelectedItem}', {this.nQuantity.Value}, '{this.dtpDueDate.Value.ToShortDateString()}')");
 
             this.refreshOrders();
         }
@@ -208,7 +208,7 @@ namespace FoamSchedule
 
 
                 DatabaseHandler dh2 = new DatabaseHandler("database.db");
-                DataTable dt2 = dh2.executeQuery($"select * from PARTS where PART_NUM=\"{dr["PART_NUM"]}\"");
+                DataTable dt2 = dh2.executeQuery($"select * from PARTS where PART_NUM='{dr["PART_NUM"]}'");
 
                 DataRow dr2 = dt2.Rows[0];
 
@@ -234,7 +234,7 @@ namespace FoamSchedule
 
             DatabaseHandler dh = new DatabaseHandler("database.db");
 
-            dh.executeNonQuery($"delete from ORDERS where ORDER_NUM=\"{this.cbOrderNum.SelectedItem}\"");
+            dh.executeNonQuery($"delete from ORDERS where ORDER_NUM='{this.cbOrderNum.SelectedItem}'");
 
             this.refreshOrders();
         }
@@ -243,7 +243,7 @@ namespace FoamSchedule
         {
             DatabaseHandler dh = new DatabaseHandler("database.db");
 
-            dh.executeNonQuery($"insert into SHIFTS (NAME) VALUES (\"{this.tbShift.Text}\")");
+            dh.executeNonQuery($"insert into SHIFTS (NAME) VALUES ('{this.tbShift.Text}')");
 
             this.refreshShifts();
 
@@ -253,8 +253,8 @@ namespace FoamSchedule
         {
             DatabaseHandler dh = new DatabaseHandler("database.db");
 
-            dh.executeNonQuery($"delete from BLOCKS where SHIFT=\"{this.cbShift.SelectedItem}\"");
-            dh.executeNonQuery($"delete from SHIFTS where NAME=\"{this.cbShift.SelectedItem}\"");
+            dh.executeNonQuery($"delete from BLOCKS where SHIFT='{this.cbShift.SelectedItem}'");
+            dh.executeNonQuery($"delete from SHIFTS where NAME='{this.cbShift.SelectedItem}'");
 
             this.refreshShifts();
             this.refreshBlocks();
@@ -357,7 +357,7 @@ namespace FoamSchedule
         {
             DatabaseHandler dbh = new DatabaseHandler("database.db");
 
-            dbh.executeNonQuery($"insert into BLOCKS (SHIFT, WEEKDAY_NAME, START, END, BREAK_HOURS) VALUES (\"{this.cbShifts.SelectedItem}\", \"{this.cbWeekdays.SelectedItem}\", \"{this.dtpShiftStart.Value.ToShortTimeString()}\", \"{this.dtpShiftEnd.Value.ToShortTimeString()}\", {this.nBreakHours.Value})");
+            dbh.executeNonQuery($"insert into BLOCKS (SHIFT, WEEKDAY_NAME, START, END, BREAK_HOURS) VALUES ('{this.cbShifts.SelectedItem}', '{this.cbWeekdays.SelectedItem}', '{this.dtpShiftStart.Value.ToShortTimeString()}', '{this.dtpShiftEnd.Value.ToShortTimeString()}', {this.nBreakHours.Value})");
 
             this.refreshBlocks();
         }
